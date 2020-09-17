@@ -19,8 +19,8 @@ public interface SchedulingDAO {
     @Query("SELECT * FROM scheduling WHERE name LIKE :name")
     SchedulingEntity findByName(String name);
 
-    @Query("SELECT * FROM scheduling WHERE schedulingDate = :date")
-    List<SchedulingEntity> findBySchedulingDate(Date date);
+    @Query("SELECT * FROM scheduling WHERE schedulingDate = :data")
+    List<SchedulingEntity> findBySchedulingDate(String data);
 
     @Query("SELECT * FROM scheduling WHERE status = :status")
     List<SchedulingEntity> findByStatus(Boolean status);

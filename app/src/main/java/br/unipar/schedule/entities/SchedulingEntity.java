@@ -16,7 +16,7 @@ public class SchedulingEntity {
     private String name;
 
     @ColumnInfo(name = "schedulingDate")
-    private Date schedulingDate;
+    private String schedulingDate;
 
     @ColumnInfo(name = "doctorName")
     private String doctorName;
@@ -46,11 +46,11 @@ public class SchedulingEntity {
         this.name = name;
     }
 
-    public Date getSchedulingDate() {
+    public String getSchedulingDate() {
         return schedulingDate;
     }
 
-    public void setSchedulingDate(Date schedulingDate) {
+    public void setSchedulingDate(String schedulingDate) {
         this.schedulingDate = schedulingDate;
     }
 
