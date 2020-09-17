@@ -10,25 +10,25 @@ import java.util.Date;
 public class SchedulingEntity {
 
     @PrimaryKey
-    public int uid;
+    private int uid;
 
     @ColumnInfo(name = "name")
-    public String name;
+    private String name;
 
     @ColumnInfo(name = "schedulingDate")
-    public Date schedulingDate;
+    private Date schedulingDate;
 
     @ColumnInfo(name = "doctorName")
-    public String doctorName;
+    private String doctorName;
 
     @ColumnInfo(name = "cellphone")
-    public String cellphone;
+    private String cellphone;
 
     @ColumnInfo(name = "email")
-    public String email;
+    private String email;
 
     @ColumnInfo(name = "status")
-    public Boolean status = false;
+    private Boolean status = false;
 
     public int getUid() {
         return uid;
