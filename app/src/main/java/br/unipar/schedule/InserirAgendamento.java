@@ -1,8 +1,14 @@
 package br.unipar.schedule;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Date;
+
+import br.unipar.schedule.database.DatabaseClient;
 import br.unipar.schedule.entities.SchedulingEntity;
 
 public class InserirAgendamento extends AppCompatActivity {
@@ -12,9 +18,24 @@ public class InserirAgendamento extends AppCompatActivity {
         setContentView(R.layout.activity_inseriragendamento);
     }
 
-    public void btnSalvarAgendamento() {
+    public void btnSalvarAgendamento(View view) {
         SchedulingEntity scheduling = new SchedulingEntity();
 
+        EditText nmPaciente = findViewById(R.id.nmPaciente);
+        EditText dtAgendamento = findViewById(R.id.dtAgendamento);
+        EditText hrAgendamento = findViewById(R.id.hrAgendamento);
+        EditText medico = findViewById(R.id.medico);
+        EditText telefone = findViewById(R.id.telefone);
+        EditText email = findViewById(R.id.email);
 
+        scheduling.setName(nmPaciente.toString());
+        scheduling.setDoctorName(medico.toString());
+        scheduling.setCellphone(telefone.toString());
+        scheduling.setEmail(email.toString());
+
+        DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().schedulingDAO().save(scheduling);
+
+        Intent intent = new Intent(InserirAgendamento.this, MainActivity.class);
+        startActivity(intent);
     }
 }

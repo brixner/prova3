@@ -17,6 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".InserirAgendamento" />
+        <activity android:name=".BuscarAgendamentos" />
+        <activity android:name=".ListarAgendamentos" />
     </application>
 
 </manifest>
