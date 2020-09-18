@@ -4,28 +4,17 @@ import android.content.Context;
 
 import androidx.room.Room;
 
+import java.lang.ref.WeakReference;
+
 public class DatabaseClient {
 
-    private static DatabaseClient mInstance;
+    private static AppDatabase databaseInstance;
+    private static final String DATABASE_NAME = "app_database";
 
-    //our app database object
-    private AppDatabase appDatabase;
-
-    private DatabaseClient(Context mCtx) {
-
-        //creating the app database with Room database builder
-        //MyToDos is the name of the database
-        appDatabase = Room.databaseBuilder(mCtx, AppDatabase.class, "Scheduling").build();
-    }
-
-    public static synchronized DatabaseClient getInstance(Context mCtx) {
-        if (mInstance == null) {
-            mInstance = new DatabaseClient(mCtx);
+    public static synchronized AppDatabase getDatabase(WeakReference<Context> weakReference) {
+        if (databaseInstance == null) {
+            databaseInstance = Room.databaseBuilder(weakReference.get(), AppDatabase.class, DATABASE_NAME).build();
         }
-        return mInstance;
-    }
-
-    public AppDatabase getAppDatabase() {
-        return appDatabase;
+        return databaseInstance;
     }
 }

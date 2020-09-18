@@ -1,4 +1,5 @@
 package br.unipar.schedule;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -6,8 +7,10 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.lang.ref.WeakReference;
 import java.util.Date;
 
+import br.unipar.schedule.database.AppDatabase;
 import br.unipar.schedule.database.DatabaseClient;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,8 +43,13 @@ public class InserirAgendamento extends AppCompatActivity {
         scheduling.setDoctorName(medico.toString());
         scheduling.setCellphone(telefone.toString());
         scheduling.setEmail(email.toString());
+        try {
+            AppDatabase appDatabase = DatabaseClient.getDatabase(new WeakReference<Context>(this));
+            appDatabase.schedulingDAO().save(scheduling);
+        } catch (Exception e){
+            System.out.println("ERRO AO SALVAR: " + e.getMessage());
+        }
 
-        DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().schedulingDAO().save(scheduling);
 
         Intent intent = new Intent(InserirAgendamento.this, MainActivity.class);
         startActivity(intent);

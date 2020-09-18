@@ -21,5 +21,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void btnBuscarAgendamento(View view) {
+        Intent intent = new Intent(MainActivity.this, ListarAgendamentos.class);
+        startActivity(intent);
+    }
 
 }
